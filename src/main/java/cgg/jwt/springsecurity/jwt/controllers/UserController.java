@@ -1,5 +1,6 @@
 package cgg.jwt.springsecurity.jwt.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -21,5 +22,10 @@ public class UserController {
         return this.userService.getUsers();
     }
 
+    @GetMapping("/current-user")
+    public String getLoggedInUser(Principal principal)
+{
+    return principal.getName();
+}
     
 }
