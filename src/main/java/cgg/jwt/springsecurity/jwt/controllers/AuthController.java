@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import cgg.jwt.springsecurity.jwt.helper.JwtHelper;
 import cgg.jwt.springsecurity.jwt.helper.JwtRequest;
 import cgg.jwt.springsecurity.jwt.helper.JwtResponse;
+import cgg.jwt.springsecurity.jwt.models.User;
+import cgg.jwt.springsecurity.jwt.services.UserService;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -25,6 +27,7 @@ public class AuthController {
     private UserDetailsService userDetailsService;
     private JwtHelper jwtHelper;
     private AuthenticationManager manager;
+    private UserService userService;
 
     @PostMapping("/login")
     public ResponseEntity<JwtResponse> login(@RequestBody JwtRequest jwtRequest){
@@ -44,5 +47,10 @@ public class AuthController {
         catch(BadCredentialsException e){
             throw new BadCredentialsException("Invalid username and password");
         }
+    }
+
+    @PostMapping("/create-user")
+    public User createUser(@RequestBody User user){
+        return this.userService.createUser(user);
     }
 }
