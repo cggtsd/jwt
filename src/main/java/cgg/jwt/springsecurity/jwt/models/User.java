@@ -1,5 +1,7 @@
 package cgg.jwt.springsecurity.jwt.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,11 +26,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String userId;
     private String userName;
-    private String password;
+    private String password; 
     @Column(unique=true)
     private String email;
 
     @OneToOne(mappedBy = "user")
+    @JsonIgnore
     private RefreshToken refreshToken;
 
     

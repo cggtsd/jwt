@@ -77,8 +77,7 @@ public class SecurityConfig {
         http
         .csrf(csrf->csrf.disable())
         .authorizeHttpRequests(auth->auth.
-        requestMatchers("/auth/login").permitAll()
-        .requestMatchers("/auth/create-user").permitAll()
+        requestMatchers("/auth/**").permitAll()
         .requestMatchers("/users").authenticated()
         .anyRequest().authenticated())
        // .exceptionHandling(e->e.authenticationEntryPoint(point))

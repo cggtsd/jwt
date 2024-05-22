@@ -8,5 +8,5 @@ import cgg.jwt.springsecurity.jwt.models.RefreshToken;
 
 public interface RefreshTokenRepository extends JpaRepository<RefreshToken,Integer> {
     
-   Optional<RefreshToken> findByRefreshtoken(String refreshToken);
+   Optional<RefreshToken> findByRefreshToken(String refreshToken);
 }
